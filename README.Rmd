@@ -26,7 +26,7 @@ All of the tutorials use either simulated datasets from the [serosim](https://se
 ## Contents
 * (WIP) Description of datasets included in ***seroepirecipes***
 * (WIP) Common considerations when preparing serological data for analysis
-* (WIP) [Fitting a hierarchical antibody kinetics model to longitudinal antibody measurements]((https://seroanalytics.github.io/seroepirecipes/articles/antibody_kinetics_models.html))
+* (WIP) [Fitting a hierarchical antibody kinetics model to longitudinal antibody measurements](https://seroanalytics.github.io/seroepirecipes/articles/antibody_kinetics_models.html)
 * (WIP) Using mixture models to classify serostatus
 * [Estimating the force of infection using serocatalytic models](https://seroanalytics.github.io/seroepirecipes/articles/serocatalytic_model.html)
 * (WIP) Inferring infection histories using _serosolver_
