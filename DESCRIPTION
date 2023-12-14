@@ -15,19 +15,7 @@ Author: c(person(given = "James",
              family="Takahashi",
            role=c("aut","cre"),
              email="saki.takahashi@jhu.edu"))
-Maintainer: c(person(given = "James",
-             family = "Hay",
-             role = c("aut", "cre"),
-             email = "jameshay218@gmail.com",
-             comment = c(ORCID = "0000-0002-1998-1844")),
-      person(given="Isobel",
-             family="Routledge",
-             role=c("aut","cre"),
-             email="Isobel.Routledge@ucsf.edu"),
-      person(given="Saki",
-             family="Takahashi",
-           role=c("aut","cre"),
-             email="saki.takahashi@jhu.edu"))
+Maintainer: James Hay <jameshay218@gmail.com>, Isobel Routledge <isobel.routledge@ucsf.edu>, and Saki Takahashi <saki.takahashi@jhu.edu>
 Description:
 License: GPL-3
 Encoding: UTF-8
