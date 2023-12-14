@@ -14,21 +14,20 @@ knitr::opts_chunk$set(
 )
 ```
 
-
-##  Introduction
-
-Serocatalytic models are used to model seroprevalence over time or age in cross-sectional serosurveys as a function of the Force of Infection (FOI) -- the per capita rate (per year) that susceptible individuals seroconvert either through infection or vaccination. In this vignette, we will demonstrate how a simple serocatalytic model can be fitted to age-stratified seroprevalence data using both a frequentist framework (using `glm`) and Bayesian framework (using `Stan`).
-
 # Serocatalytic models
-```{r preamble}
+```{r preamble, }
 library(seroepirecipes)
 library(rstan)
 library(bayesplot)
 ```
 
+##  Introduction
+
+Serocatalytic models are used to model seroprevalence over time or age in cross-sectional serosurveys as a function of the Force of Infection (FOI) -- the per capita rate (per year) that susceptible individuals seroconvert either through infection or vaccination. In this vignette, we will demonstrate how a simple serocatalytic model can be fitted to age-stratified seroprevalence data using both a frequentist framework (using `glm`) and Bayesian framework (using `Stan`).
+
 ## Other resources
 
-There are two R packages for fitting serocatalytic models to seroprevalence data: [serofoi](https://epiverse-trace.github.io/serofoi/) and [Rsero](https://github.com/nathoze/Rsero). Both packages provide implementations of the basic serocatalytic model and common extensions. An excellent resource for learning about the serocatalytic model is Chapter 4 of the textbook [_Epidemics: Models and Data using R* by Ottar N.Bjørnstad](https://link.springer.com/book/10.1007/978-3-319-97487-3). 
+There are two R packages for fitting serocatalytic models to seroprevalence data: [serofoi](https://epiverse-trace.github.io/serofoi/) and [Rsero](https://github.com/nathoze/Rsero). Both packages provide implementations of the basic serocatalytic model and common extensions. An excellent resource for learning about the serocatalytic model is Chapter 4 of the textbook [_Epidemics: Models and Data using R_ by Ottar N. Bjørnstad](https://link.springer.com/book/10.1007/978-3-319-97487-3). 
 
 ##  Data requirements
 

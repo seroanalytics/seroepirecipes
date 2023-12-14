@@ -14,12 +14,23 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+# Antibody kinetics models
+```{r setup, message=FALSE}
 library(seroepirecipes)
 library(ggplot2)
 library(patchwork)
 library(dplyr)
 ```
+
+##  Introduction
+
+## Other resources
+
+## Data requirements
+
+## The model
+
+### Antibody kinetics models
 
 ```{r models}
 
@@ -51,3 +62,10 @@ p1 <- ggplot(y) + geom_line(aes(x=t,y=y)) + facet_wrap(~ver,scales="free") + yla
 p2 <- ggplot(y) + geom_line(aes(x=t,y=log_y)) + facet_wrap(~ver,scales="free") + ylab("Log antibody level")
 p1/p2
 ```
+
+### Likelihood function
+
+### Example: kinetics of anti-SARS-CoV-2 spike IgG following SARS-CoV-2 infection
+
+## Extensions
+
