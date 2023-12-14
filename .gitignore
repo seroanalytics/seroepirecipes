@@ -52,3 +52,5 @@ rsconnect/
 *.so
 docs
 inst/doc
+/doc/
+/Meta/
