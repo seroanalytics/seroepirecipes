@@ -14,14 +14,22 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-***seroepirecipes***  implements and links to R packages implementing commonly used mathematical and statistical models for analyzing serological data. We implement a range of methods in R vignettes, from fitting antibody kinetics models to longitudinal antibody titer data, estimating the force of infection using serocatalytic models, and inferring infection histories using time-since-infection methods.
+***seroepirecipes***  implements and links to R packages implementing commonly used mathematical and statistical models for analyzing serological data. The package implements a range of methods in R vignettes, from fitting antibody kinetics models to longitudinal antibody titer data, estimating the force of infection using serocatalytic models, and inferring infection histories using time-since-infection methods. This codebase accompanies a [literature review](https://osf.io/kqdsn) of analytical methods for seroepidemiology. 
+
+All of the tutorials use either simulated datasets from the [serosim](https://seroanalytics.github.io/serosim/) R-package or publicly available datasets.
+
+## DEVELOPER TO DO
+* Include Stan models within source code rather than vignette-specific scripts.
+* Attach example datasets
+* Move the jahR antibody kinetics functions here
 
 ## Contents
 * (WIP) Description of datasets included in ***seroepirecipes***
+* (WIP) Common considerations when preparing serological data for analysis
 * (WIP) Fitting a hierarchical antibody kinetics model to longitudinal antibody measurements
 * (WIP) Using mixture models to classify serostatus
 * [Estimating the force of infection using serocatalytic models](https://seroanalytics.github.io/seroepirecipes/articles/serocatalytic_model.html)
-* (WIP) Estimating the force of infection using antibody aquisition models
+* (WIP) Estimating the force of infection using antibody acquisition models
 * (WIP) Infection times using reversible jump MCMC
 * (WIP) Inferring infection histories using _serosolver_
 * (WIP) Time-since-infection machine learning classifier

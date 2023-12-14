@@ -15,17 +15,44 @@ Author: c(person(given = "James",
              family="Takahashi",
            role=c("aut","cre"),
              email="saki.takahashi@jhu.edu"))
-Maintainer: James Hay <jameshay218@gmail.com>
+Maintainer: c(person(given = "James",
+             family = "Hay",
+             role = c("aut", "cre"),
+             email = "jameshay218@gmail.com",
+             comment = c(ORCID = "0000-0002-1998-1844")),
+      person(given="Isobel",
+             family="Routledge",
+             role=c("aut","cre"),
+             email="Isobel.Routledge@ucsf.edu"),
+      person(given="Saki",
+             family="Takahashi",
+           role=c("aut","cre"),
+             email="saki.takahashi@jhu.edu"))
 Description:
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/seroanalytics/seroepirecipes
 BugReports: https://github.com/seroanalytics/seroepirecipes/issues
-Imports: Rcpp (>= 1.0.11)
-LinkingTo: Rcpp
+Imports: 
+    methods,
+    Rcpp (>= 1.0.11),
+    RcppParallel (>= 5.0.1),
+    rstan (>= 2.18.1),
+    rstantools (>= 2.3.1)
+LinkingTo: 
+    BH (>= 1.66.0),
+    Rcpp (>= 0.12.0),
+    RcppEigen (>= 0.3.3.3.0),
+    RcppParallel (>= 5.0.1),
+    rstan (>= 2.18.1),
+    StanHeaders (>= 2.18.0)
 RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 Suggests: 
     knitr,
     rmarkdown
+Biarch: true
+Depends: 
+    R (>= 3.4.0)
+SystemRequirements: GNU make
