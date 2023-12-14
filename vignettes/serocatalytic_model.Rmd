@@ -14,65 +14,80 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Serocatalytic models
 
-###  Introduction
+##  Introduction
 
-Serocatalytic models are used to model and infer the Force of Infection (FOI), which is the per capita rate (per year) that susceptible individuals are exposed to infection, from cross - sectional serological surveys
+Serocatalytic models are used to model seroprevalence over time or age in cross-sectional serosurveys as a function of the Force of Infection (FOI) -- the per capita rate (per year) that susceptible individuals seroconvert either through infection or vaccination. In this vignette, we will demonstrate how a simple serocatalytic model can be fitted to age-stratified seroprevalence data using both a frequentist framework (using `glm`) and Bayesian framework (using `Stan`).
+
+# Serocatalytic models
+```{r preamble}
+library(seroepirecipes)
+library(rstan)
+library(bayesplot)
+```
+
+## Other resources
+
+There are two R packages for fitting serocatalytic models to seroprevalence data: [serofoi](https://epiverse-trace.github.io/serofoi/) and [Rsero](https://github.com/nathoze/Rsero). Both packages provide implementations of the basic serocatalytic model and common extensions. An excellent resource for learning about the serocatalytic model is Chapter 4 of the textbook [_Epidemics: Models and Data using R* by Ottar N.Bjørnstad](https://link.springer.com/book/10.1007/978-3-319-97487-3). 
+
+##  Data requirements
+
+Data requirements for the serocatalytic model are simple: the minimum variables required are the proportion of seropositive individuals stratified by age group. Note that inferences can only be drawn for time periods for which individuals in the sample were alive. Additionally, having seropositivity at multiple timepoints can allow an assessment of changes in FOI over time. Differences in FOI between sub-populations or demographic groups can also be measured using serocatalytic models (see Table 1)
+
+```{r, echo = FALSE, warning=FALSE, comment= FALSE, error= FALSE}
+
+colnames<-c("Use case", "Minimum variables")
+
+Metric<-c("Population-wide FOI","Age-specific FOI","Changes in  FOI over time","Changes in FOI in different populations", "FOI with seroreversion")
+MinVars<-c("Proportion seropositive by age", "Proportion seropositive by age","Proportion seropositive by age, time and population","Proportion seropositive by age and/or time, seroreversion rate (known or estimated from data)","Proportion seropositive by age and/or time, seroreversion rate (known or estimated from data)")
+Usecases <- c("Estimating ascertainment rates, population-level seroprevalence, average age at first infection",
+              "Timing of historical outbreaks",
+              "Timing of historical outbreaks, impact of interventions, changes in transmission rates over time",
+              "Impact of interventions on different populations and over time",
+              "In cases where immunity wanes and is not lifelong, can be used to estimate the force of infection and duration of seropositivity")
+
+
+min_var_tab<-as.data.frame(cbind(Metric,MinVars, Usecases))
+colnames(min_var_tab)<-colnames
+knitr::kable(min_var_tab, caption = "Table 1 : Minimum variables required for serocatalytic model depending on use case")
+
+```
+
+## The model
 
 The simplest catalytic model assumes:
 
-- Force of Infection is constant between ages and over time
-- No sero-reversion (loss of seropositivity after infection)
-- No boosting of antibody response
-- No cross-reactivity 
-- Stable population size and characteristics
+- The FOI is constant across ages and over time
+- There is no seroreversion (once individuals become seropositive, they remain seropositive indefinitely)
+- No boosting of antibody response (individuals are either seropositive or seronegative)
+- There is no cross-reactivity to other pathogens
+- The population size is stable
 
-
-Under this model, the rate of change of susceptible individuals ($S$) with age ($a$) is expressed as
+Under this model, the rate of change of susceptible individuals ($S$) with age ($a$) is expressed as:
 
 $$
 \frac{dS}{dt} = -\lambda S(a) 
 $$
 where $\lambda$ is the constant FOI. 
 
-The proportion of the population seropositive at age $a$, $P_{a}$ can be given as
+The proportion of the population seropositive at age $a$, $\pi(a)$ can then be solved as:
 $$
-P_{a}= 1-exp(-\lambda a)
+\pi(a)= 1-exp(-\lambda a)
 $$ 
 
-Note either age ($a$) or time ($t$) could be used in the example above. Here we define seropositive as individuals whose serum gave an ELISA value above the normal range for serum from nonexposed individuals. 
-
-###  Variables required
-
-Minimum variables required for this model to identify the population wide FOI would be the proportion seropositive by age group. Additionally, having seropositivity at multiple timepoints  can allow an assessment of changes in FOI over time. Differences in FOI between sub-populations or demographic groups can also be measured using serocatalytic models (see Table 1)
-
-```{r, echo = FALSE, warning=FALSE, comment= FALSE, error= FALSE}
-
-colnames<-c("Use case", "Minimum variables")
-
-Usecase<-c("Population-wide FOI","Age-specific FOI","Changes in  FOI over time","Changes in FOI in different populations")
-MinVars<-c("proportion seropositive, age", "proportion seropositive, age","proportion seropositive, age, time","proportion seropositive, age, time, population")
+Note either age ($a$) or time ($t$) could be used in the example above. The definition of seropositivity is important -- for quantitative and semi-quantitative assays such as ELISA, a threshold must be chosen above which individuals are considered seropositive. This threshold is usually based on known antibody measurement distributions from individuals who are known to have been exposed or not. 
 
 
-min_var_tab<-as.data.frame(cbind(Usecase,MinVars))
-colnames(min_var_tab)<-colnames
-knitr::kable(min_var_tab, caption = "Table 1 : Minimum variables required for serocatalytic model depending on use case")
-
-```
-
-### Example: Fitting a basic serocatalytic model in Stan
+### Example: seroprevalence of measles neutralising antibodies in New Haven, USA in the 1950s
 
 For this example, we are fitting to a dataset from the book "Epidemics: Models and Data using R" by Ottar Bjornstad, Chapter 4-3. We can see that we have age bands, the median age within that band, the number of samples in that band, the number positive and negative, and the seroprevalence in that age band (f). For this example we will subset the data, excluding the <1, 40-49 and 50+ brackets.
+
+<< NOTE: this data comes from the Black et al. 1959 paper directly, so we can pull it ourselves and include in seroepirecipes. >>
 
 ```{r,warning=FALSE, comment= FALSE, error= FALSE}
 
 ## For now, fit to data from "Epidemics: Models and Data using R" by Ottar Bjornstad, Chapter 4-3
-
 library(epimdr)
-library(rstan)
-library(bayesplot)
-
 data(black)
 
 ## Subsetting to specific age brackets
@@ -82,7 +97,7 @@ knitr::kable(b2)
 
 ```
 
-Next we get just the maximum likelihood estimate for Force of Infection.
+
 ```{r,warning=FALSE, comment= FALSE, error= FALSE}
 ## [1] MLE method to estimate FOI
 fit <- glm(cbind(pos,neg) ~ offset(log(mid)), family=binomial(link="cloglog"), data=b2)
@@ -97,11 +112,11 @@ points(b2$mid, b2$f, pch=8)
 
 ```
 
-Now we try the stan version, implementing the FOI (lambda parameter) inference using MCMC
+Now we try the Stan version, implementing the FOI (lambda parameter) inference using MCMC
 ```{r,warning=FALSE, comment= FALSE, error= FALSE}
 
 ## [2] Fit this model in Stan
-fit_Stan <- stan(file="model_serocatalytic.stan",
+fit_Stan <- rstan::sampling(get_stan_models()$model_serocatalytic,
                  data=list(AGE_GROUPS = nrow(b2),
                            age_mid = b2$mid,
                            N = b2$n,
@@ -150,41 +165,44 @@ model {
 
 
 
+## Extensions
 
+### Time- and age-varying FOI
 
-### Extension 1- Time or age-varying FOI
+If FOI is not assumed to be constant and varies by age or time (for example due to the introduction of a new intervention), then the FOI may be calculated as a function of time or age $\lambda(t)$, or as multiple parameter values covering different time periods.
 
-If FOI is not assumed to be constant and varies by age or time (for example due to the introduction of a new intervention), then multiple $\lambda$ values may need to be estimated
-
-Discrete age varying FOI
+<< NOTE: where did this equation come from? >>
+Discrete age varying FOI (one change point):
 $$
-P_{a,\tau} = 1-exp( -[ \lambda_{1}(a-(\tau - \gamma_{1}))+\lambda_{2}(\tau - \gamma_{2})])
-$$
-
-Seasonally varying FOI
-$$
-P_{a,\tau} = 1-exp (\sum_{i = \tau - a +1   }^{i= \tau} \lambda_{i} )
+\pi(a,t) = 1-exp( -[ \lambda_{1}(a-(t - \gamma_{1}))+\lambda_{2}(t - \gamma_{2})])
 $$
 
+Time-varying, discrete FOI:
+$$
+\pi(a,t) = 1-exp (\sum_{i = t - a +1   }^{i= t} \lambda_{i} )
+$$
+This model has been implemented as part of the [serofoi](https://epiverse-trace.github.io/serofoi/index.html) R package, described [here](https://epiverse-trace.github.io/serofoi/articles/foi_models.html).
+
+Time-varying FOI as a function of time:
+$$
+\pi(a, t) = 1 - exp(-\int_{t-a}^{a} \lambda(u)du)
+$$
 
 
-###  Extension 2 - Seroreversion
 
-In many infectious diseases, antibody response will wane over time to the point that individuals who were previously infected may be seronegative. To account for this, we use what is called a reverse serocatalytic model which includes a seroreversion parameter,$ρ$. 
+###  Accounting seroreversion
 
- 1. Seroconversion rate,$λ$ , mean annual rate of seroconversion (negative to positive)
- 2. Seroreversion rate, $ρ$, mean annual rate of seroreversion(positive to negative) $1/ρ$ is the antibody     persistence duration in years
+In many infectious diseases, antibody response will wane over time to the point that individuals who were previously infected may become seronegative. To account for this, we usea reversible serocatalytic model which includes a seroreversion parameter,$ρ$. Parameters of this model are:
+
+ 1. Seroconversion rate,$λ$, the mean annual rate of seroconversion (negative to positive)
+ 2. Seroreversion rate, $ρ$, the mean annual rate of seroreversion(positive to negative). $1/ρ$ is the antibody persistence duration in years
  
-From this, the proportion seropositive at age $a$ is expressed as
+The proportion seropositive at age $a$ can again be solved analytically as:
 
 $$
- P_{a}=\frac{λ}{ λ +ρ}(1−exp(−a(λ+ρ)) 
+ \pi(a)=\frac{\lambda}{ \lambda +\rho}(1−exp(−a(\lambda+\rho)) 
 $$ 
 
-
-###  Extension 3 - Boosting
-
-To model multiple infections
 
 
 ###  References 

@@ -2,13 +2,12 @@
 % Please edit documentation in R/seroepirecipes-package.R
 \docType{package}
 \name{seroepirecipes-package}
-\alias{seroepirecipes}
 \alias{seroepirecipes-package}
-\title{seroepirecipes: seroepirecipes: a codebase for seroanalytics methods}
+\alias{_PACKAGE}
+\alias{seroepirecipes}
+\title{seroepirecipes}
 \description{
-\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
-
-
+seroepirecipes: implementations of seroanalytical methods
 }
 \seealso{
 Useful links:
@@ -18,11 +17,3 @@ Useful links:
 }
 
 }
-\keyword{Rcpp}
-\keyword{extract}
-\keyword{import}
-\keyword{importFrom}
-\keyword{internal}
-\keyword{methods}
-\keyword{rstan}
-\keyword{sampling}

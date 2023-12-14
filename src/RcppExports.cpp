@@ -36,9 +36,12 @@ BEGIN_RCPP
 END_RCPP
 }
 
+RcppExport SEXP _rcpp_module_boot_stan_fit4model_serocatalytic_mod();
+
 static const R_CallMethodDef CallEntries[] = {
     {"_seroepirecipes_kinetics_power_function_cpp", (DL_FUNC) &_seroepirecipes_kinetics_power_function_cpp, 2},
     {"_seroepirecipes_likelihood_func_fast_continuous", (DL_FUNC) &_seroepirecipes_likelihood_func_fast_continuous, 3},
+    {"_rcpp_module_boot_stan_fit4model_serocatalytic_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4model_serocatalytic_mod, 0},
     {NULL, NULL, 0}
 };
 

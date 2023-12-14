@@ -32,7 +32,7 @@ publicly available datasets.
   analysis
 - (WIP) [Fitting a hierarchical antibody kinetics model to longitudinal
   antibody
-  measurements]((https://seroanalytics.github.io/seroepirecipes/articles/antibody_kinetics_models.html))
+  measurements](https://seroanalytics.github.io/seroepirecipes/articles/antibody_kinetics_models.html)
 - (WIP) Using mixture models to classify serostatus
 - [Estimating the force of infection using serocatalytic
   models](https://seroanalytics.github.io/seroepirecipes/articles/serocatalytic_model.html)
