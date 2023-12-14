@@ -21,8 +21,10 @@ knitr::opts_chunk$set(
 * Fitting a hierarchical antibody kinetics model to longitudinal antibody measurements
 * Using mixture models to classify serostatus
 * Estimating the force of infection using serocatalytic models
+* Estimating the force of infection using antibody aquisition models
 * Infection times using reversible jump MCMC
 * Inferring infection histories using _serosolver_
+* Time-since-infection machine learning classifier
 
 ## Installation
 
