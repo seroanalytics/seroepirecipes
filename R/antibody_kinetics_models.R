@@ -19,7 +19,7 @@
 #' N <- 25
 #' r <- rlnorm(N, log(1.3),0.01) ## Shape parameter
 #' v <- rexp(N,500) ## Decay rate
-#' y0 <- 1## Start titre
+#' y0 <- 1 ## Start titre
 #' k <- 0 ## Titre dependency
 #' peak <- 10^(rnorm(N,5, 1.5)) ## Peak titre
 #' 

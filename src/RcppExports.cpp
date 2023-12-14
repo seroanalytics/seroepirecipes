@@ -11,19 +11,34 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// rcpp_hello
-List rcpp_hello();
-RcppExport SEXP _seroepirecipes_rcpp_hello() {
+// kinetics_power_function_cpp
+NumericVector kinetics_power_function_cpp(NumericVector times, NumericVector pars);
+RcppExport SEXP _seroepirecipes_kinetics_power_function_cpp(SEXP timesSEXP, SEXP parsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(rcpp_hello());
+    Rcpp::traits::input_parameter< NumericVector >::type times(timesSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type pars(parsSEXP);
+    rcpp_result_gen = Rcpp::wrap(kinetics_power_function_cpp(times, pars));
+    return rcpp_result_gen;
+END_RCPP
+}
+// likelihood_func_fast_continuous
+NumericVector likelihood_func_fast_continuous(const NumericVector& theta, const NumericVector& obs, const NumericVector& predicted_titres);
+RcppExport SEXP _seroepirecipes_likelihood_func_fast_continuous(SEXP thetaSEXP, SEXP obsSEXP, SEXP predicted_titresSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type theta(thetaSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type obs(obsSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type predicted_titres(predicted_titresSEXP);
+    rcpp_result_gen = Rcpp::wrap(likelihood_func_fast_continuous(theta, obs, predicted_titres));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_seroepirecipes_rcpp_hello", (DL_FUNC) &_seroepirecipes_rcpp_hello, 0},
+    {"_seroepirecipes_kinetics_power_function_cpp", (DL_FUNC) &_seroepirecipes_kinetics_power_function_cpp, 2},
+    {"_seroepirecipes_likelihood_func_fast_continuous", (DL_FUNC) &_seroepirecipes_likelihood_func_fast_continuous, 3},
     {NULL, NULL, 0}
 };
 
