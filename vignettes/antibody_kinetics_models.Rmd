@@ -19,6 +19,9 @@ library(seroepirecipes)
 library(ggplot2)
 library(patchwork)
 library(dplyr)
+```
+
+```{r models}
 
 times <- seq(0,365,by=0.1)
 
@@ -32,7 +35,6 @@ y3 <- data.frame(y=kinetics_ceiling(times,pars_ranjeva),t=times,ver="Biphasic mo
 
 pars_ode <- c("A"=0,"beta"=100,"rho"=0.25,"c_s"=0.25,"c_l"=0.1,"delta"=0,"r"=0.001)
 y4 <- data.frame(y=kinetics_simple_ode(times,pars_ode),t=times,ver="ODE model (Pelleau et al. 2021)")
-ggplot(y4) + geom_line(aes(x=t,y=y))
 
 pars_gamma <- c("y0"=0,"peak"=300,"shape"=1.2,"scale"=50)
 y5 <- data.frame(y=kinetics_gamma(times,pars_gamma),t=times,ver="Gamma function (Zhao et al. 2018)")

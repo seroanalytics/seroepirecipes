@@ -1,9 +1,8 @@
 ---
-title: " Serocatalytic models"
-date: "`r Sys.Date()`"
+title: "Serocatalytic models"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Serocatalytic models}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -32,6 +32,7 @@ All of the tutorials use either simulated datasets from the [serosim](https://se
 * (WIP) Inferring infection histories using _serosolver_
 
 Upcoming vignettes:
+
 * (WIP) Estimating the force of infection using antibody acquisition models
 * (WIP) Infection times using reversible jump MCMC
 * (WIP) Time-since-infection machine learning classifier
