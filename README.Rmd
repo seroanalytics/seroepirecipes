@@ -17,18 +17,18 @@ knitr::opts_chunk$set(
 ***seroepirecipes***  implements and links to R packages implementing commonly used mathematical and statistical models for analyzing serological data. We implement a range of methods in R vignettes, from fitting antibody kinetics models to longitudinal antibody titer data, estimating the force of infection using serocatalytic models, and inferring infection histories using time-since-infection methods.
 
 ## Contents
-* Description of datasets included in ***seroepirecipes***
-* Fitting a hierarchical antibody kinetics model to longitudinal antibody measurements
-* Using mixture models to classify serostatus
-* Estimating the force of infection using serocatalytic models
-* Estimating the force of infection using antibody aquisition models
-* Infection times using reversible jump MCMC
-* Inferring infection histories using _serosolver_
-* Time-since-infection machine learning classifier
+* (WIP) Description of datasets included in ***seroepirecipes***
+* (WIP) Fitting a hierarchical antibody kinetics model to longitudinal antibody measurements
+* (WIP) Using mixture models to classify serostatus
+* [Estimating the force of infection using serocatalytic models](https://seroanalytics.github.io/seroepirecipes/articles/serocatalytic_model.html)
+* (WIP) Estimating the force of infection using antibody aquisition models
+* (WIP) Infection times using reversible jump MCMC
+* (WIP) Inferring infection histories using _serosolver_
+* (WIP) Time-since-infection machine learning classifier
 
 ## Installation
 
-You can install the development version of ***seroepirecipes*** from [GitHub](https://github.com/) with:
+You can install the development version of ***seroepirecipes*** with:
 
 ``` r
 if(!require("remotes")) install.packages("remotes")

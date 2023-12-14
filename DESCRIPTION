@@ -1,6 +1,6 @@
 Package: seroepirecipes
 Type: Package
-Title: Codebase of seroanalytics methods
+Title: seroepirecipes: a codebase for seroanalytics methods
 Version: 0.1.0
 Author: c(person(given = "James",
              family = "Hay",

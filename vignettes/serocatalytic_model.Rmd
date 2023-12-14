@@ -1,6 +1,5 @@
 ---
-title: " Serocatalytic Model Family"
-author: "James Hay, Isobel Routledge and Saki Takahashi"
+title: " Serocatalytic models"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
