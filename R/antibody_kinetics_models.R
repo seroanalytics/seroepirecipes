@@ -155,7 +155,7 @@ f_wane <- function(times, pars){
 #' times <- seq(0,1000,by=0.1)
 #' y <- kinetics_ranjeva(times,pars)
 #' plot(times, y, type='l')
-kinetics_ranjeva <- function(times, pars, boost=f_rise, wane=f_wane){
+kinetics_ceiling <- function(times, pars, boost=f_rise, wane=f_wane){
   y0 <- pars["y0"]
   y_baseline <- y0 + pars["frac"]*pars["peak"]*exp(-y0*pars["k"])
   y <- numeric(length(times))
@@ -189,7 +189,7 @@ kinetics_ranjeva <- function(times, pars, boost=f_rise, wane=f_wane){
 #' times <- seq(0,1000,by=0.1)
 #' y <- kinetics_ode(times,pars)
 #' plot(times, y, type='l')
-kinetics_ode <- function(times, pars){
+kinetics_simple_ode <- function(times, pars){
   A <- pars["A"]
   beta <- pars["beta"]
   rho <- pars["rho"]

@@ -24,6 +24,7 @@ URL: https://github.com/seroanalytics/seroepirecipes
 BugReports: https://github.com/seroanalytics/seroepirecipes/issues
 Imports: 
     methods,
+    ggplot2,
     Rcpp (>= 1.0.11),
     RcppParallel (>= 5.0.1),
     rstan (>= 2.18.1),
@@ -39,7 +40,12 @@ RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    cowplot,
+    dplyr,
+    magrittr,
+    tidyr,
+    lubridate
 Biarch: true
 Depends: 
     R (>= 3.4.0)

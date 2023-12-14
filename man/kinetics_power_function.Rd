@@ -32,7 +32,7 @@ Model parameters:
 N <- 25
 r <- rlnorm(N, log(1.3),0.01) ## Shape parameter
 v <- rexp(N,500) ## Decay rate
-y0 <- 1## Start titre
+y0 <- 1 ## Start titre
 k <- 0 ## Titre dependency
 peak <- 10^(rnorm(N,5, 1.5)) ## Peak titre
 
@@ -50,10 +50,10 @@ for(i in 2:N){
 }
 \seealso{
 Other kinetics_models: 
+\code{\link{kinetics_ceiling}()},
 \code{\link{kinetics_gamma}()},
-\code{\link{kinetics_ode}()},
 \code{\link{kinetics_piecewise}()},
-\code{\link{kinetics_ranjeva}()},
+\code{\link{kinetics_simple_ode}()},
 \code{\link{kinetics_simple}()}
 }
 \concept{kinetics_models}

@@ -34,10 +34,10 @@ plot(times, y, type='l')
 }
 \seealso{
 Other kinetics_models: 
-\code{\link{kinetics_ode}()},
+\code{\link{kinetics_ceiling}()},
 \code{\link{kinetics_piecewise}()},
 \code{\link{kinetics_power_function}()},
-\code{\link{kinetics_ranjeva}()},
+\code{\link{kinetics_simple_ode}()},
 \code{\link{kinetics_simple}()}
 }
 \concept{kinetics_models}
