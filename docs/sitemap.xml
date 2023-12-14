@@ -7,6 +7,9 @@
     <loc>/LICENSE-text.html</loc>
   </url>
   <url>
+    <loc>/articles/antibody_kinetics_models.html</loc>
+  </url>
+  <url>
     <loc>/articles/index.html</loc>
   </url>
   <url>
@@ -19,12 +22,54 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/reference/Fast-observation-error-function-continuous.html</loc>
+  </url>
+  <url>
+    <loc>/reference/boost_function.html</loc>
+  </url>
+  <url>
+    <loc>/reference/f_rise.html</loc>
+  </url>
+  <url>
+    <loc>/reference/f_wane.html</loc>
+  </url>
+  <url>
     <loc>/reference/hello.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
+    <loc>/reference/kinetics_ceiling.html</loc>
+  </url>
+  <url>
+    <loc>/reference/kinetics_gamma.html</loc>
+  </url>
+  <url>
+    <loc>/reference/kinetics_piecewise.html</loc>
+  </url>
+  <url>
+    <loc>/reference/kinetics_power_function.html</loc>
+  </url>
+  <url>
+    <loc>/reference/kinetics_power_function_cpp.html</loc>
+  </url>
+  <url>
+    <loc>/reference/kinetics_simple.html</loc>
+  </url>
+  <url>
+    <loc>/reference/kinetics_simple_ode.html</loc>
+  </url>
+  <url>
     <loc>/reference/rcpp_hello.html</loc>
+  </url>
+  <url>
+    <loc>/reference/seroepirecipes-package.html</loc>
+  </url>
+  <url>
+    <loc>/reference/wane_function.html</loc>
+  </url>
+  <url>
+    <loc>/reference/wane_function_asymptote.html</loc>
   </url>
 </urlset>

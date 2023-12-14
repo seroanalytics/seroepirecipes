@@ -16,7 +16,9 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(seroepirecipes)
-library(cowplot)
+library(ggplot2)
+library(patchwork)
+library(dplyr)
 
 times <- seq(0,365,by=0.1)
 
@@ -28,8 +30,9 @@ y2 <- data.frame(y=kinetics_simple(times,pars_simple),t=times,ver="Simple model 
 pars_ranjeva <- c(y0=1,peak=80,k=0,t_peak=28,w=0.008,frac=0.5)
 y3 <- data.frame(y=kinetics_ceiling(times,pars_ranjeva),t=times,ver="Biphasic model (Ranjeva et al. 2019)")
 
-pars_ode <- c("A"=0,"beta"=100,"rho"=0.25,"c_s"=0.15,"c_l"=0.0075,"delta"=0,"r"=0.001)
+pars_ode <- c("A"=0,"beta"=100,"rho"=0.25,"c_s"=0.25,"c_l"=0.1,"delta"=0,"r"=0.001)
 y4 <- data.frame(y=kinetics_simple_ode(times,pars_ode),t=times,ver="ODE model (Pelleau et al. 2021)")
+ggplot(y4) + geom_line(aes(x=t,y=y))
 
 pars_gamma <- c("y0"=0,"peak"=300,"shape"=1.2,"scale"=50)
 y5 <- data.frame(y=kinetics_gamma(times,pars_gamma),t=times,ver="Gamma function (Zhao et al. 2018)")
