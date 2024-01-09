@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-***seroepirecipes***  implements and links to R packages implementing commonly used mathematical and statistical models for analyzing serological data. The package implements a range of methods in R vignettes, from fitting antibody kinetics models to longitudinal antibody titer data, estimating the force of infection using serocatalytic models, and inferring infection histories using time-since-infection methods. This codebase accompanies a [literature review](https://osf.io/kqdsn) of analytical methods for seroepidemiology. 
+***seroepirecipes***  provides implementations and links to R packages of commonly used mathematical and statistical models for analyzing serological data. The package covers a range of methods in R vignettes, from fitting antibody kinetics models to longitudinal antibody titer data, estimating the force of infection using serocatalytic models, and inferring infection histories using time-since-infection methods. This codebase accompanies a [literature review](https://osf.io/kqdsn) of analytical methods for seroepidemiology. 
 
 All of the tutorials use either simulated datasets from the [serosim](https://seroanalytics.github.io/serosim/) R-package or publicly available datasets.
 
